@@ -1,0 +1,113 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[      3919,        105]
+NotebookOptionsPosition[      3335,         87]
+NotebookOutlinePosition[      3740,        103]
+CellTagsIndexPosition[      3697,        100]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"SetDirectory", "[", 
+   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Get", "[", "\"\<../src/init.wl\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"res", "=", 
+   RowBox[{"ComputeR00Rpm", "[", "]"}]}], ";"}], "\n", "res", "\n"}], "Input",\
+
+ CellChangeTimes->{{3.980502457471313*^9, 3.980502457472352*^9}, {
+  3.98050583820998*^9, 3.98050584118256*^9}},
+ CellLabel->
+  "In[173]:=",ExpressionUUID->"7c6a28c5-7f85-4584-90b5-42f171993147"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "RuleDelayed", "rhs", 
+   "\"\:6a21\:5f0f \\!\\(\\*RowBox[{\\\"unc_Association\\\"}]\\) \:51fa\:73b0\
+\:5728\:89c4\:5219 \\!\\(\\*RowBox[{RowBox[{\\\"PlotXDelta\\\", \\\"[\\\", \
+RowBox[{\\\"centerRes_Association\\\", \\\",\\\", RowBox[{\\\"unc_Association\
+\\\", \\\":\\\", RowBox[{\\\"Missing\\\", \\\"[\\\", \
+\\\"\\\\\\\"NoUncertainty\\\\\\\"\\\", \\\"]\\\"}]}], \\\",\\\", \
+RowBox[{\\\"OptionsPattern\\\", \\\"[\\\", \\\"]\\\"}]}], \\\"]\\\"}], \\\"\
+\[RuleDelayed]\\\", RowBox[{\\\"Module\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"curves\\\", \\\",\\\", \\\"bands\\\", \
+\\\",\\\", \\\"hasBands\\\", \\\",\\\", \\\"centerRpm\\\", \\\",\\\", \
+\\\"centerR00\\\", \\\",\\\", \\\"acp1\\\", \\\",\\\", \\\"acp2\\\", \
+\\\",\\\", \\\"upperRpm\\\", \\\",\\\", \\\"lowerRpm\\\", \\\",\\\", \
+\\\"upperR00\\\", \\\",\\\", \\\"lowerR00\\\"}], \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]}], \
+\\\"]\\\"}]}]\\) \:7684\:53f3\:8fb9.\"", 2, 175, 77, 28974117154714885795, 
+   "Local"},
+  "MessageTemplate",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{3.980505842650975*^9},
+ CellLabel->
+  "\:6b63\:5728\:8ba1\:7b97In[173]:=",ExpressionUUID->"09dba940-9d30-4f7a-\
+bd9c-c00845b0ceec"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\<\"R00\"\>", "\[Rule]", 
+    RowBox[{"\[LeftAssociation]", 
+     RowBox[{
+      RowBox[{"\<\"Value\"\>", "\[Rule]", "0.5772288171216672`"}], ",", 
+      RowBox[{"\<\"Error\"\>", "\[Rule]", "0.06685956438024501`"}]}], 
+     "\[RightAssociation]"}]}], ",", 
+   RowBox[{"\<\"Rpm\"\>", "\[Rule]", 
+    RowBox[{"\[LeftAssociation]", 
+     RowBox[{
+      RowBox[{"\<\"Value\"\>", "\[Rule]", "1.8315879632521281`"}], ",", 
+      RowBox[{"\<\"Error\"\>", "\[Rule]", "0.11267774245505592`"}]}], 
+     "\[RightAssociation]"}]}]}], "\[RightAssociation]"}]], "Output",
+ CellChangeTimes->{3.980502469531595*^9, 3.980505842653693*^9},
+ CellLabel->
+  "Out[177]=",ExpressionUUID->"597bfa2e-7f44-440c-9e5a-468f34b84d74"]
+}, Open  ]]
+},
+WindowSize->{808, 720},
+WindowMargins->{{Automatic, 185}, {Automatic, 20}},
+FrontEndVersion->"14.3 for Mac OS X ARM (64-bit) (2025\:5e747\:67088\:65e5)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"a3ef1cd6-1091-4c1d-b801-4e89c993c09d"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 682, 18, 217, "Input",ExpressionUUID->"7c6a28c5-7f85-4584-90b5-42f171993147"],
+Cell[1261, 42, 1282, 23, 59, "Message",ExpressionUUID->"09dba940-9d30-4f7a-bd9c-c00845b0ceec"],
+Cell[2546, 67, 773, 17, 33, "Output",ExpressionUUID->"597bfa2e-7f44-440c-9e5a-468f34b84d74"]
+}, Open  ]]
+}
+]
+*)
+

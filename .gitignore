@@ -1,0 +1,15 @@
+# ========= Mathematica =========
+*.mx
+
+# ========= Generated results =========
+results/
+
+# ========= Generated figures =========
+*.png
+*.pdf
+
+# ========= Notebook autosave =========
+*.nb~
+
+# ========= macOS =========
+.DS_Store
