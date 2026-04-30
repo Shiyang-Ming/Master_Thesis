@@ -13,3 +13,6 @@ results/
 
 # ========= macOS =========
 .DS_Store
+
+# ========= Codex =========
+.codex/
