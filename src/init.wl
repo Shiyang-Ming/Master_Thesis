@@ -42,4 +42,5 @@ Get["functions.wl"];
 Get["computations.wl"];
 Get["uncertainty.wl"];
 Get["plotting.wl"];
+Get["parameters.wl"];
 

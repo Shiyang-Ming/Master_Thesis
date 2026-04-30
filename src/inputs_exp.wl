@@ -1,6 +1,8 @@
 (* ::Package:: *)
 
 (* ::Package:: *)
+(**)
+
 
 (*
 ===========================================================
@@ -33,6 +35,7 @@ MBp0 = 5279.41; BBpErr=0.07;
 Mpip0 = 139.57039; MpipErr=0.00018;
 Mpi00 = 134.9768; Mpi0Err = 0.0005;
 MK00 = 497.611; MK0Err = 0.013;
+MKp0 = 493.677; MKpErr = 0.013;
 
 (*-------- Particle Life Time (s) --------*)
 TBp0 = 1.638*10^-12; TBpErr = 0.004*10^-12;
@@ -77,6 +80,14 @@ AcppipKs0 = -0.003;AcppipKsErr = 0.015; (*Bp p194*)
 Acppi0Kp0 = 0.027;Acppi0KpErr = 0.012; (*Bp p194*)
 Acppi0KsSM0 = -0.106567; Acppi0KsSMErr = 0.0315165;
 
+(*-------- Hadronic Parameters --------*)
+rhoc0 = 0.03; rhocErr = 0.01;
+thetac0 = 2.6 Degree; thetacErr = 4.6 Degree;
+
 (*-------- Phid --------*)
 phid0 = 45.3 Degree; phidErr = 0.9 Degree; (*HFLAV 2*beta*)
+
+(*-------- SU(3) Breaking Effect -------*)
+rSU3Err = 0.02; thetaSU3Err = 20; (*estimation*)
+RTC0 = 1.2; RTCErr = 0.2; (*consider the 20% non-factorizable effects, waiting for lattice results(0308297)*)
 
