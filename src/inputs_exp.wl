@@ -42,8 +42,8 @@ TBp0 = 1.638*10^-12; TBpErr = 0.004*10^-12;
 TBd0 = 1.517*10^-12; TBdErr = 0.004*10^-12;
 
 (*-------- CP-averaged Branch Fraction --------*)
-BrB0pi0pi00 = 1.55*10^-6; 
-BrB0pi0pi0Err = 0.17*10^-6; (*B0 p19*)
+BrB0pi0pi00 = 1.46*10^-6; 
+BrB0pi0pi0Err = 0.19*10^-6; (*B0 p19*)
 
 BrB0pippim0 = 5.37*10^-6; 
 BrB0pippimErr = 0.20*10^-6; (*B0 p19*)
@@ -65,14 +65,15 @@ BrBppi0KpErr = 0.04*10^-5; (*Bp p15*)
 
 (*-------- CKM Matrix Parameters --------*)
 lambdaCKM0 = 0.22501; lambdaCKMErr = 0.00068; (*rpp2024-rev-ckm-matrix*)
-gamma0 = 66.4 Degree; gammaErr = 2.8 Degree; (*HFLAV Summer 2025*)
+gamma0 = 65.6 Degree; gammaErr = 3.0 Degree; (*HFLAV Summer 2025*)
 Vud0 = 0.97367; VudErr = 0.00032;  
 Vus0 = 0.22431; VusErr = 0.00085; (*rpp2024-rev-ckm-matrix*)
 
 (*-------- CPV Parameters --------*)
 Acppippim0 = 0.314; AcppippimErr = 0.030; (*B0 p227 without minus sign as a convention*)
 Scppippim0 = -0.670; ScppippimErr = 0.030; (*B0 p228*)
-Acppi0pi00 = 0.25; Acppi0pi0Err = 0.20; (*B0 p228 without minus sign as a convention*)
+Acppi0pi00 = 0.23; Acppi0pi0Err = 0.18; (*B0 p228 without minus sign as a convention*)
+Scppi0pi00 = 0.61; Scppi0pi0Err = 0.78; (*Belle II*)
 Acppi0Ks0 = 0; Acppi0KsErr = 0.08; (*B0 p216*)
 Scppi0Ks0 = 0.64; Scppi0KsErr = 0.13; (*B0 p217*)
 AcppimKp0 = -0.0831; AcppimKpErr = 0.0031; (*B0 p201*)
@@ -85,7 +86,7 @@ rhoc0 = 0.03; rhocErr = 0.01;
 thetac0 = 2.6 Degree; thetacErr = 4.6 Degree;
 
 (*-------- Phid --------*)
-phid0 = 45.3 Degree; phidErr = 0.9 Degree; (*HFLAV 2*beta*)
+phid0 = 45.7 Degree; phidErr = 1 Degree; (*HFLAV 2*beta*)
 
 (*-------- SU(3) Breaking Effect -------*)
 rSU3Err = 0.02; thetaSU3Err = 20; (*estimation*)

@@ -77,7 +77,7 @@ Options[ComputeXDeltaCenter] = {"DeltaStepDeg" -> 1};
 ComputeXDeltaCenter[inputs_Association, OptionsPattern[]] :=
  Module[
   {
-   A, S, gamma, phid, Rpm, R00, Acp00,
+   A, S, gamma, phid, Rpm, R00, Acp00, Scp00,
    d0, theta0, x0, Delta0,
    deltas, centerRpm, centerR00, centerAcp1, centerAcp2,
    step
@@ -109,14 +109,24 @@ ComputeXDeltaCenter[inputs_Association, OptionsPattern[]] :=
    centerAcp2 = Table[{\[CapitalDelta]/Degree, xAcpBranches[\[CapitalDelta], d0, theta0, gamma, Acp00][[2]]}, {\[CapitalDelta], deltas}];
   ];
 
+  Scp00 = Lookup[inputs, "Scp00", Missing["NotProvided"]];
+
   <|
-   "Center" -> <|"x" -> x0, "Delta" -> Delta0, "d" -> d0, "theta" -> theta0|>,
+   "Center" -> <|
+     "x" -> x0,
+     "Delta" -> Delta0,
+     "d" -> d0,
+     "theta" -> theta0,
+     "gamma" -> gamma,
+     "phid" -> phid
+   |>,
    "GridDeg" -> (deltas/Degree),
    "Curves" -> <|
      "Rpm" -> centerRpm,
      "R00" -> centerR00,
      "Acp1" -> centerAcp1,
      "Acp2" -> centerAcp2
-   |>
+   |>,
+   "Inputs" -> <|"Scp00" -> Scp00|>
   |>
  ];
