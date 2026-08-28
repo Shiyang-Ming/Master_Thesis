@@ -1,0 +1,6 @@
+x = 1.03261 +/- 0.0619061
+Delta(deg) = -60.4275 +/- 9.8325
+DeltaStepDeg = 1
+MC samples requested = 1000
+MC samples valid = 1000
+MC quantiles = {0.16, 0.84}

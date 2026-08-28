@@ -123,7 +123,8 @@ PlotXDelta[centerRes_Association, unc_Association, OptionsPattern[]] :=
   {
    curves,
    centerRpm, centerR00, acp1, acp2,
-   bands, upperRpm, lowerRpm, upperR00, lowerR00
+   bands, upperRpm, lowerRpm, upperR00, lowerR00,
+   center, inputs, scp00, scpContour, plotRange
   },
 
   curves = centerRes["Curves"];
@@ -131,12 +132,42 @@ PlotXDelta[centerRes_Association, unc_Association, OptionsPattern[]] :=
   centerR00 = curves["R00"];
   acp1 = Lookup[curves, "Acp1", Missing["NotProvided"]];
   acp2 = Lookup[curves, "Acp2", Missing["NotProvided"]];
+  center = centerRes["Center"];
+  inputs = Lookup[centerRes, "Inputs", <||>];
+  scp00 = Lookup[inputs, "Scp00", Missing["NotProvided"]];
+  plotRange = OptionValue["PlotRange"];
 
   (* NEW format only: unc["Curves"]["Bands"][curveName]["Upper"/"Lower"] *)
   bands = unc["Curves"]["Bands"];
 
   upperRpm = bands["Rpm"]["Upper"];  lowerRpm = bands["Rpm"]["Lower"];
   upperR00 = bands["R00"]["Upper"];  lowerR00 = bands["R00"]["Lower"];
+  scpContour =
+    If[NumericQ[scp00],
+      ContourPlot[
+        Evaluate[
+          SCPpi0pi0[
+            x,
+            \[CapitalDelta] Degree,
+            center["d"],
+            center["theta"],
+            center["gamma"],
+            center["phid"]
+          ]
+        ],
+        {\[CapitalDelta], plotRange[[1, 1]], plotRange[[1, 2]]},
+        {x, plotRange[[2, 1]], plotRange[[2, 2]]},
+        Contours -> {scp00},
+        ContourStyle -> Directive[Green, Dashed, Thick],
+        PlotPoints -> 50,
+        MaxRecursion -> 2,
+        Frame -> False,
+        Axes -> False,
+        Background -> None,
+        ContourShading -> None
+      ],
+      {}
+    ];
 
   Show[
    {
@@ -159,7 +190,9 @@ PlotXDelta[centerRes_Association, unc_Association, OptionsPattern[]] :=
     If[ListQ[acp2] && acp2 =!= Missing["NotProvided"],
       ListLinePlot[{acp2}, PlotStyle -> {{Blue, Dashed, Thick}}],
       {}
-    ]
+    ],
+
+    scpContour
    },
 
    Frame -> True,
@@ -175,11 +208,12 @@ PlotXDelta[centerRes_Association, unc_Association, OptionsPattern[]] :=
    Epilog -> {
      Inset[
       LineLegend[
-       {GrayLevel[.5], Red, Directive[Blue, Dashed]},
+       {GrayLevel[.5], Red, Directive[Blue, Dashed], Directive[Green, Dashed]},
        {
         Style["R^{\[Pi]\[Pi]}_{+-}", 16, FontFamily -> "Times", Black],
         Style["R^{\[Pi]\[Pi]}_{00}", 16, FontFamily -> "Times", Black],
-        Style["A^{\[Pi]^0 \[Pi]^0}_{CP}", 16, FontFamily -> "Times", Black]
+        Style["A^{\[Pi]^0 \[Pi]^0}_{CP}", 16, FontFamily -> "Times", Black],
+        Style["S^{\[Pi]^0 \[Pi]^0}_{CP}", 16, FontFamily -> "Times", Black]
        },
        LegendMarkers -> None,
        LegendLayout -> "Column",
@@ -192,4 +226,3 @@ PlotXDelta[centerRes_Association, unc_Association, OptionsPattern[]] :=
    }
   ]
 ];
-

@@ -64,3 +64,16 @@ xAcpBranches[Delta_, d_, theta_, gamma_, Acp00_] :=
   x2 = d (-T - Sqrt[T^2 - 1]);
   {x1, x2}
  ];
+
+(*-------- S_CP^(pi0 pi0) observable --------*)
+ClearAll[SCPpi0pi0];
+SCPpi0pi0[x_, Delta_, d_, theta_, gamma_, phid_] :=
+ -(
+    d^2 Sin[phid]
+    + 2 d x Cos[theta - Delta] Sin[phid + gamma]
+    + x^2 Sin[phid + 2 gamma]
+   )/(
+    d^2
+    + 2 d x Cos[theta - Delta] Cos[gamma]
+    + x^2
+   );

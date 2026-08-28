@@ -25,7 +25,8 @@ Quiet @ Check[
     "phid"  -> phid0,
     "Rpm"   -> Rpm0,
     "R00"   -> R000,
-    "Acp00" -> Acppi0pi00
+    "Acp00" -> Acppi0pi00,
+    "Scp00" -> Scppi0pi00
   |>;
 
   paramSpecs = {
