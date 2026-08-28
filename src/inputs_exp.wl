@@ -38,8 +38,8 @@ MK00 = 497.611; MK0Err = 0.013;
 MKp0 = 493.677; MKpErr = 0.013;
 
 (*-------- Particle Life Time (s) --------*)
-TBp0 = 1.638*10^-12; TBpErr = 0.004*10^-12;
-TBd0 = 1.517*10^-12; TBdErr = 0.004*10^-12;
+TBp0 = 1.637*10^-12; TBpErr = 0.004*10^-12;
+TBd0 = 1.5113*10^-12; TBdErr = 0.0027*10^-12;
 
 (*-------- CP-averaged Branch Fraction --------*)
 BrB0pi0pi00 = 1.46*10^-6; 
@@ -79,7 +79,9 @@ Scppi0Ks0 = 0.64; Scppi0KsErr = 0.13; (*B0 p217*)
 AcppimKp0 = -0.0831; AcppimKpErr = 0.0031; (*B0 p201*)
 AcppipKs0 = -0.003;AcppipKsErr = 0.015; (*Bp p194*)
 Acppi0Kp0 = 0.027;Acppi0KpErr = 0.012; (*Bp p194*)
-Acppi0KsSM0 = -0.106567; Acppi0KsSMErr = 0.0315165;
+Acppi0KsSM0 = -0.032162047394885956; Acppi0KsSMErr = 0.02818536480014893;
+Acppi0KsTH0 =  -0.09142393876785476; Acppi0KsTHErr =  0.1326590259821064;
+Scppi0KsTH0 = 0.8193580000175499; Scppi0KsTHErr =  0.043502538509379435;
 
 (*-------- Hadronic Parameters --------*)
 rhoc0 = 0.03; rhocErr = 0.01;

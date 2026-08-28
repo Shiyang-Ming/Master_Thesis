@@ -1,0 +1,12 @@
+Notebook[{Cell["Scp_Acp", "Title"], Cell["Initialization", "Section"], 
+  codeCell[initializationCode], Cell["Load inputs", "Section"], 
+  codeCell[loadInputsCode], Cell["Definitions for S_CP and A_CP", "Section"], 
+  codeCell[definitionsCode], Cell["Experimental inputs", "Section"], 
+  codeCell[experimentalInputsCode], Cell["Plot construction", "Section"], 
+  codeCell[plotConstructionCode], Cell["Generate final figure", "Section"], 
+  codeCell["fig"], Cell[BoxData["fig"], "Output", GeneratedCell -> True, 
+   CellAutoOverwrite -> True], Cell["Export figure", "Section"], 
+  codeCell[exportCode], Cell[BoxData["exportCode"], "Output", 
+   GeneratedCell -> True, CellAutoOverwrite -> True]}, 
+ WindowSize -> {1440, 1080}, WindowMargins -> 
+  {{Automatic, 80}, {Automatic, 40}}, StyleDefinitions -> "Default.nb"]

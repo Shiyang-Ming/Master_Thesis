@@ -322,6 +322,23 @@ Quiet @ Check[
     curve
    ];
 
+  ClearAll[BuildPurpleTargetBranchCurve];
+  BuildPurpleTargetBranchCurve[inputAssoc_Association, phiGridDeg_List] :=
+   Module[{state, sampleRootsRes, phiGridPlotDeg, curve},
+    state = BuildPurpleInputState[inputAssoc];
+    sampleRootsRes = ComputeAcceptedRootsByPhi[state["Pars"], state["Obs"], phiGridDeg];
+    If[sampleRootsRes === $Failed, Return[$Failed]];
+
+    phiGridPlotDeg = Select[phiGridDeg, phiPlotRangeDeg[[1]] <= # <= phiPlotRangeDeg[[2]] &];
+    curve = BuildCentralTargetBranch[sampleRootsRes["QByPhi"], phiGridPlotDeg];
+    If[curve === {} || !VectorQ[curve, ValidPoint2DQ], Return[$Failed]];
+    curve
+   ];
+
+  ClearAll[CurveQByPhiKey];
+  CurveQByPhiKey[curve_List] := Association @ Map[PhiKey[#[[1]]] -> #[[2]] &, curve];
+  CurveQByPhiKey[_] := <||>;
+
   ClearAll[BuildPurpleBandRowsFD];
   BuildPurpleBandRowsFD[centerInputs_Association, paramSpecs_List, phiGridDeg_List, phiSupportDeg_List, centralQByKey_Association] :=
    Module[{centerCurve, names, variations, rows},
@@ -337,40 +354,46 @@ Quiet @ Check[
         dnIn = centerInputs;
         upIn[name] = upIn[name] + sig;
         dnIn[name] = dnIn[name] - sig;
-        upCurve = BuildPurpleMatchedCurve[upIn, phiGridDeg, phiSupportDeg, centralQByKey];
-        dnCurve = BuildPurpleMatchedCurve[dnIn, phiGridDeg, phiSupportDeg, centralQByKey];
-        name -> <|"Up" -> upCurve, "Down" -> dnCurve|>
+        upCurve = BuildPurpleTargetBranchCurve[upIn, phiGridDeg];
+        dnCurve = BuildPurpleTargetBranchCurve[dnIn, phiGridDeg];
+        name -> <|
+          "Up" -> upCurve,
+          "Down" -> dnCurve,
+          "UpByKey" -> CurveQByPhiKey[upCurve],
+          "DownByKey" -> CurveQByPhiKey[dnCurve]
+        |>
       ],
       {i, Length[paramSpecs]}
     ];
 
     rows = Cases[
       Table[
-        Module[{phiDeg, qCenter, halfDiffs, sigmaQ},
+        Module[{phiDeg, key, qCenter, halfDiffs, validHalfDiffs, sigmaQ},
           phiDeg = centerCurve[[i, 1]];
+          key = PhiKey[phiDeg];
           qCenter = centerCurve[[i, 2]];
           halfDiffs = Table[
-            If[
-              AssociationQ[variations[name]] &&
-              ListQ[variations[name]["Up"]] &&
-              ListQ[variations[name]["Down"]] &&
-              Length[variations[name]["Up"]] >= i &&
-              Length[variations[name]["Down"]] >= i &&
-              ValidPoint2DQ[variations[name]["Up"][[i]]] &&
-              ValidPoint2DQ[variations[name]["Down"][[i]]],
-              (variations[name]["Up"][[i, 2]] - variations[name]["Down"][[i, 2]])/2,
-              Missing["NoFiniteDifference"]
+            Module[{upByKey, dnByKey},
+              upByKey = variations[name]["UpByKey"];
+              dnByKey = variations[name]["DownByKey"];
+              If[
+                KeyExistsQ[upByKey, key] && KeyExistsQ[dnByKey, key],
+                (upByKey[key] - dnByKey[key])/2,
+                Missing["NoFiniteDifference"]
+              ]
             ],
             {name, names}
           ];
-          If[MemberQ[halfDiffs, _Missing], Return[Nothing]];
-          sigmaQ = Sqrt[Total[halfDiffs^2]];
+          validHalfDiffs = Cases[halfDiffs, _?NumericQ];
+          If[validHalfDiffs === {}, Return[Nothing]];
+          sigmaQ = Sqrt[Total[validHalfDiffs^2]];
           <|
             "PhiDeg" -> N @ phiDeg,
             "QCentral" -> N @ qCenter,
             "QLow16" -> N @ (qCenter - sigmaQ),
             "QMedian" -> N @ qCenter,
-            "QHigh84" -> N @ (qCenter + sigmaQ)
+            "QHigh84" -> N @ (qCenter + sigmaQ),
+            "NFiniteDifferenceContributors" -> Length[validHalfDiffs]
           |>
         ],
         {i, Length[centerCurve]}
@@ -387,12 +410,13 @@ Quiet @ Check[
 
   ClearAll[MakePurpleBandGraphic];
   MakePurpleBandGraphic[purpleEnvelopeRows_List] :=
-   Module[{upper, lower},
+   Module[{upper, lower, polys},
     upper = Transpose[{purpleEnvelopeRows[[All, "PhiDeg"]], purpleEnvelopeRows[[All, "QHigh84"]]}];
-    lower = Reverse @ Transpose[{purpleEnvelopeRows[[All, "PhiDeg"]], purpleEnvelopeRows[[All, "QLow16"]]}];
+    lower = Transpose[{purpleEnvelopeRows[[All, "PhiDeg"]], purpleEnvelopeRows[[All, "QLow16"]]}];
+    polys = MakeBandPolygonsFromUpperLower[upper, lower, 6];
     Graphics[{
       Directive[purpleFillColor, Opacity[0.35], EdgeForm[None]],
-      Polygon[Join[upper, lower]]
+      polys
     }]
    ];
 
